@@ -1,0 +1,4 @@
+/build/
+/include/
+/venv/
+model.safetensors
