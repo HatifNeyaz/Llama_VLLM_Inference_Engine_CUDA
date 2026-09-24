@@ -81,8 +81,9 @@ Ensure your directory structure looks like this:
 * 2. Generate the Input Prompt
 Before compiling, you can customize your prompt using the Python helper script.
 
-Bash
+```Bash
 python quick.py
+```
 This will output a C++ vector string. Copy that output and replace the std::vector<int> prompt = {...}; line in main.cu if you want a custom prompt.
 
 * 3. Build the CUDA Engine
@@ -90,11 +91,12 @@ Navigate to your C++ project directory and build the executable using CMake.
 
 Note: The CMakeLists.txt is currently hardcoded for the GTX 1660 Ti (set(CMAKE_CUDA_ARCHITECTURES "75")). If you are using a different GPU, change "75" to match your GPU's architecture (e.g., "80" for Ampere/RTX 30-series, "89" for Ada/RTX 40-series).
 
-Bash
+```Bash
 mkdir build
 cd build
 cmake ..
 make
+```
 4. Run Inference
 Execute the compiled binary. The program will map the model weights to VRAM, allocate the KV Cache, execute the generation loop for 50 tokens, and automatically call the Python script to decode the output.
 
