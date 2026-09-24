@@ -64,10 +64,10 @@ The engine runs a classic autoregressive generation loop. It takes a sequence of
 
 
 # Steps to Reproduce
-1. Project Setup
+* 1. Project Setup
 Ensure your directory structure looks like this:
 
-Plaintext
+```text
 ├── model.safetensors      # Your downloaded Llama-3 weights
 ├── tokenizer.py           # Output decoder script
 ├── quick.py               # Input encoder script
@@ -76,14 +76,16 @@ Plaintext
     ├── main.cu
     └── include/
         └── json.hpp       # Downloaded from nlohmann/json GitHub
-2. Generate the Input Prompt
+```
+
+* 2. Generate the Input Prompt
 Before compiling, you can customize your prompt using the Python helper script.
 
 Bash
 python quick.py
 This will output a C++ vector string. Copy that output and replace the std::vector<int> prompt = {...}; line in main.cu if you want a custom prompt.
 
-3. Build the CUDA Engine
+* 3. Build the CUDA Engine
 Navigate to your C++ project directory and build the executable using CMake.
 
 Note: The CMakeLists.txt is currently hardcoded for the GTX 1660 Ti (set(CMAKE_CUDA_ARCHITECTURES "75")). If you are using a different GPU, change "75" to match your GPU's architecture (e.g., "80" for Ampere/RTX 30-series, "89" for Ada/RTX 40-series).
